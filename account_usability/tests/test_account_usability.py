@@ -66,3 +66,13 @@ class TestAccountUsability(TransactionCase):
                 self.env.ref("account.action_view_bank_statement_tree"),
             ],
         )
+
+    def test_no_empty_templates_menu(self):
+        # The chart templates are not records since 17.0, so the "Templates"
+        # menu would be an entry with no child.
+        self.assertFalse(
+            self.env.ref(
+                "account_usability.menu_account_coa_settings",
+                raise_if_not_found=False,
+            )
+        )
